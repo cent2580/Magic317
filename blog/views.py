@@ -27,11 +27,11 @@ def category(request, cid):
 
 
 def tag(request, tname):
-    tag_article = Article.objects.filter(tags__name=tname)
-    tag_name = Tag.objects.get(name=tname)
+    tag_article_list = Article.objects.filter(atag__tname=tname)
+    # tag_name = Tag.objects.get(tname = tname)
     context = {
-        'tag_article': tag_article,
-        'tag_name': tag_name,
+        'tag_article_list': tag_article_list,
+        # 'tag_name': tag_name,
     }
     return render(request, 'blog/tag.html', context)
 
