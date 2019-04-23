@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .models import Bloguser, Category, Tag, Article, Link
 
-
 # Create your views here.
 # 首页
 def index(request):
@@ -34,4 +33,12 @@ def tag(request, tname):
         # 'tag_name': tag_name,
     }
     return render(request, 'blog/tag.html', context)
+
+
+def entry(request, eid):
+    entry = Article.objects.get(id=eid)
+    context = {
+        'entry': entry,
+    }
+    return render(request, 'blog/entry.html', context)
 

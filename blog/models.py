@@ -1,5 +1,5 @@
 from django.db import models
-from DjangoUeditor.models import UEditorField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 class Bloguser(models.Model):
@@ -44,10 +44,7 @@ class Tag(models.Model):
 
 class Article(models.Model):
     atitle = models.CharField(verbose_name='文章标题', max_length=32)
-    acontent = UEditorField(verbose_name='文章内容', toolbars='full',
-                            width=640, height=480,
-                            command=None, blank=True,
-                            imagePath='ueditor_image/',filePath='ueditor_file/',)
+    acontent = RichTextUploadingField(verbose_name='文章内容', config_name='default')
     image = models.ImageField(verbose_name='文章图片', upload_to='article_images/%Y/%m%d', blank=True, null=True)
     acategory = models.ForeignKey(Category, verbose_name='文章分类', on_delete=models.CASCADE,)
     atag = models.ManyToManyField(Tag, verbose_name='文章标签', blank=True)

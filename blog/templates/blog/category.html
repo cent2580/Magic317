@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <div class="mdl-grid portfolio-max-width">
+
         {% for category_article in category_article_list %}
             <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
                 <div class="mdl-card__media">
@@ -28,10 +28,9 @@
                 </div>
                 <div class="mdl-card__actions mdl-card--border">
                     <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
-                       href="portfolio-example01.html" data-upgraded=",MaterialButton,MaterialRipple">🧐 阅读入口<span
+                       href="{% url 'blog:entry' category_article.id %}" data-upgraded=",MaterialButton,MaterialRipple">🧐 阅读入口<span
                             class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></a>
                 </div>
             </div>
         {% endfor %}
-    </div>
 {% endblock %}

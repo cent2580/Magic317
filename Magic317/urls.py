@@ -18,11 +18,15 @@ import xadmin
 from django.conf import settings
 from django.views.static import serve
 from django.urls import path, include, re_path
+from django.conf.urls.static import static
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('xadmin/', xadmin.site.urls),  # xadmin
-    path('ueditor/', include('DjangoUeditor.urls')),  # 富文本编辑器
-    re_path('^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    path('ckeditor/', include('ckeditor_uploader.urls')),  # 富文本编辑器
+    # re_path('^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     path('blog/', include('blog.urls'), name='blog')  # 指向blog
 ]
+if settings.DEBUG:
+    # static files (images, css, javascript, etc.)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,6 +1,6 @@
 .portfolio-header {
   position: relative;
-  background-image: url(images/header-bg.jpg);
+  background-color: pink;
 }
 
 .portfolio-header .mdl-layout__header-row {
@@ -8,12 +8,6 @@
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
-}
-
-.mdl-layout__title {
-  font-size: 14px;
-  text-align: center;
-  font-weight: 300;
 }
 
 .is-compact .mdl-layout__title span {
@@ -28,19 +22,29 @@
   min-height: auto;
 }
 
-.portfolio-logo {
-  background: url(images/logo.png) 50% no-repeat;
-  background-size: cover;
-  height: 150px;
-  width: 150px;
-  margin: auto auto 10px;
+.person-button {
+    display: block;
+    position: absolute;
+    height: 48px;
+    width: 48px;
+    border: 0;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    font-size: 26px;
+    line-height: 56px;
+    font-family: Helvetica,Arial,sans-serif;
+    margin: 8px 12px;
+    top: 0;
+    right: 0;
+    color: rgb(255,255,255);
+    z-index: 4;
+
 }
 
-.is-compact .portfolio-logo {
-  height: 50px;
-  width: 50px;
-  margin-top: 7px;
-}
 
 .portfolio-navigation-row {
   background-color: rgba(0, 0, 0, 0.08);
@@ -61,9 +65,6 @@
   line-height: 42px;
 }
 
-.portfolio-header .mdl-layout__drawer-button {
-    background-color: rgba(197, 197, 197, 0.44);
-}
 
 .portfolio-navigation-row .is-active {
   position: relative;
@@ -110,12 +111,18 @@
 
 img.article-image {
   width: 100%;
-  height: auto;
+  height: 280px;
 }
 
 .portfolio-max-width {
   max-width: 900px;
   margin: auto;
+}
+
+.search-input {
+    max-width: 900px;
+    height: 45px;
+    margin: auto;
 }
 
 .portfolio-copy {

@@ -22,6 +22,7 @@ from . import views
 app_name = 'blog'
 urlpatterns = [
     path('index/', views.index, name='index'),  # blog首页
-    path('category/<cid>', views.category, name='category'),  # blog首页
-    path('tag/<tname>', views.tag, name='tag'),  # blog首页
+    path('category/<cid>', views.category, name='category'),  # blog分类
+    path('tag/<tname>', views.tag, name='tag'),  # blog标签
+    path('entry/<eid>',views.entry, name='entry'),  #blog文章内容
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
