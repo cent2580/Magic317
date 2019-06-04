@@ -1,0 +1,55 @@
+.page-header {
+	background-color: lightskyblue;
+}
+.page-header .mdl-layout__header-row {
+	justify-content: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+}
+
+.page-header-logo {
+	min-height: 12.5rem;
+}
+
+.page-header-nav {
+	background-color: rgba(0, 0, 0, 0.08);
+	text-transform: uppercase;
+	height: 2.875rem;
+}
+
+.page-header-nav .mdl-navigation {
+	text-align: center;
+	max-width: 56.25rem;
+	width: 100%;
+}
+
+.page-header-nav .mdl-navigation__link {
+	flex: 1;
+	line-height: 2.625rem;
+}
+
+.page-content .page-content-max-width {
+	max-width: 56.25rem;
+	margin: auto;
+}
+
+img.article-image {
+	width: 100%;
+	height: 9.375rem;
+}
+
+.page-content .loading {
+	text-align: center;
+	padding: 0.5rem;
+}
+
+.mdl-mini-footer {
+    margin-top: 80px;
+    height: 120px;
+    padding: 40px;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: lightskyblue;
+    box-sizing: border-box;
+}

@@ -2,6 +2,15 @@ from django.shortcuts import render
 from .models import Bloguser, Category, Tag, Article, Link
 
 # Create your views here.
+
+
+def global_param(request):
+    category_list = Category.objects.all()
+    return {
+        'category_list': category_list,
+    }
+
+
 # 首页
 def index(request):
     article_list = Article.objects.all()
@@ -22,7 +31,7 @@ def category(request, cid):
         'category_list': category_list,
         'category_article_list': category_article_list,
     }
-    return render(request, 'blog/category.html', context)
+    return render(request, 'blog/header.html', context)
 
 
 def tag(request, tname):
@@ -37,8 +46,15 @@ def tag(request, tname):
 
 def entry(request, eid):
     entry = Article.objects.get(id=eid)
+    previous_blog = Article.objects.filter(add_datatime__gt=entry.add_datatime).first()
+    next_blog = Article.objects.filter(add_datatime__lt=entry.add_datatime).last()
+    # entry.views += 1
+    # entry.save()
+
     context = {
         'entry': entry,
+        'previous_blog': previous_blog,
+        'next_blog': next_blog,
     }
     return render(request, 'blog/entry.html', context)
 

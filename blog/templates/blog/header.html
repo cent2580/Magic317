@@ -1,0 +1,17 @@
+<header class="page-header mdl-layout__header mdl-layout__header--waterfall">
+    <!-- Top row, always visible -->
+    <div class="page-header-logo mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Magic317</span>
+    </div>
+    <!-- Bottom row, not visible on scroll -->
+    <div class="page-header-nav mdl-layout__header-row">
+        <!-- Navigation -->
+        <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+            {% for category in category_list %}
+                <a class="mdl-navigation__link" href="{% url 'blog:category' category.id%}">{{ category.cname }}</a>
+            {% endfor %}
+        </nav>
+    </div>
+</header>
+
