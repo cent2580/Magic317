@@ -4,7 +4,7 @@
     {% for article in category_article_list %}
         <div class="mdl-cell mdl-card mdl-shadow--4dp">
             <div class="mdl-card__media">
-                <img class="article-image" src="{% static 'blog/images/photo.jpg' %}" border="0" alt="">
+                <img class="article-image" src="{{ article.image.url }}" border="0" alt="">
             </div>
             <div class="mdl-card__title mdl-card--border">
                 {{ article.atitle }}

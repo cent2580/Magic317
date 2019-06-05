@@ -22,6 +22,7 @@ from . import views
 app_name = 'blog'
 urlpatterns = [
     path('index/', views.index, name='index'),  # blog首页
+    path('index/index_list', views.index_list, name='index_list'),  # blog首页
     path('category=<cname>', views.category, name='category'),  # blog分类
     path('index/ajax/search', views.search, name='search'),  # blog分类
     path('tag/<tname>', views.tag, name='tag'),  # blog标签

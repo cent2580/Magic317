@@ -12,7 +12,6 @@ def global_param(request):
     }
 
 
-# 首页
 def index(request):
     article_list = Article.objects.all()
     context = {
@@ -21,13 +20,22 @@ def index(request):
     return render(request, 'blog/index.html', context)
 
 
+# 首页
+def index_list(request):
+    article_list = Article.objects.all()
+    context = {
+        'article_list': article_list,
+    }
+    return render(request, 'blog/index_list.html', context)
+
+
 # 分类页
 def category(request, cname):
     category_article_list = Article.objects.filter(acategory__cname=cname).order_by('-add_datatime')
     context = {
         'category_article_list': category_article_list,
     }
-    return render(request, 'blog/category.html', context)
+    return render(request, 'blog/category_list.html', context)
 
 
 # 搜索
@@ -35,12 +43,11 @@ def search(request):
     if request.method == 'GET':
         keyword = request.GET.get('keyword', None)
         if keyword:
-            result = Article.objects.filter(atitle__icontains=keyword).values()
-            data = list(result)
+            result = Article.objects.filter(atitle__icontains=keyword)
             context = {
-                'data': data,
+                'result': result,
             }
-            return JsonResponse(context)
+            return render(request, 'blog/serach_list.html', context)
 
 
 def tag(request, tname):
