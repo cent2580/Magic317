@@ -1,9 +1,10 @@
+{% extends 'blog/index.html' %}
 {% load static %}
-<div class="mdl-grid">
-    {% for article in article_list %}
+{% block article_list %}
+    {% for article in category_article_list %}
         <div class="mdl-cell mdl-card mdl-shadow--4dp">
             <div class="mdl-card__media">
-                <img class="article-image" src="{% static 'blog/images/gtx.jpg' %}" border="0" alt="">
+                <img class="article-image" src="{% static 'blog/images/photo.jpg' %}" border="0" alt="">
             </div>
             <div class="mdl-card__title mdl-card--border">
                 {{ article.atitle }}
@@ -21,14 +22,15 @@
                 更新：{{ article.update_datatime }}
             </div>
             <div class="mdl-card__actions mdl-card--border">
-                <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="{% url 'blog:entry' article.id %}">
+                <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                   href="{% url 'blog:entry' article.id %}">
                     阅读更多
                 </a>
-{#                <div class="mdl-layout-spacer"></div>#}
-                <a class="mdl-button mdl-js-button mdl-js-ripple-effect" >
+                {#                <div class="mdl-layout-spacer"></div>#}
+                <a class="mdl-button mdl-js-button mdl-js-ripple-effect">
                     <i class="material-icons">thumb_up</i>
                 </a>
             </div>
         </div>
     {% endfor %}
-</div>
+{% endblock %}

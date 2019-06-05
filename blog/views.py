@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Bloguser, Category, Tag, Article, Link
+from django.http import JsonResponse,HttpResponse
 
 # Create your views here.
 
@@ -14,24 +15,32 @@ def global_param(request):
 # 首页
 def index(request):
     article_list = Article.objects.all()
-    category_list = Category.objects.all()
-    # tag_list = Tag.objects.all()
     context = {
         'article_list': article_list,
-        'category_list': category_list,
-        # 'tag_list': tag_list,
     }
     return render(request, 'blog/index.html', context)
 
 
-def category(request, cid):
-    category_list = Category.objects.all()
-    category_article_list = Article.objects.filter(acategory_id=cid).order_by('-add_datatime')
+# 分类页
+def category(request, cname):
+    category_article_list = Article.objects.filter(acategory__cname=cname).order_by('-add_datatime')
     context = {
-        'category_list': category_list,
         'category_article_list': category_article_list,
     }
-    return render(request, 'blog/header.html', context)
+    return render(request, 'blog/category.html', context)
+
+
+# 搜索
+def search(request):
+    if request.method == 'GET':
+        keyword = request.GET.get('keyword', None)
+        if keyword:
+            result = Article.objects.filter(atitle__icontains=keyword).values()
+            data = list(result)
+            context = {
+                'data': data,
+            }
+            return JsonResponse(context)
 
 
 def tag(request, tname):

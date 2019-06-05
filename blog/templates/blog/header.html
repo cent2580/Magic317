@@ -8,8 +8,9 @@
     <div class="page-header-nav mdl-layout__header-row">
         <!-- Navigation -->
         <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+        <a class="mdl-navigation__link" href="{% url 'blog:index' %}">首页</a>
             {% for category in category_list %}
-                <a class="mdl-navigation__link" href="{% url 'blog:category' category.id%}">{{ category.cname }}</a>
+                <a class="mdl-navigation__link" href="{% url 'blog:category' category.cname %}">{{ category.cname }}</a>
             {% endfor %}
         </nav>
     </div>

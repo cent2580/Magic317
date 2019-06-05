@@ -1,10 +1,9 @@
 <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">Title</span>
+    <span class="mdl-layout-title">Magic317</span>
     <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
+        {% for category in category_list %}
+            <a class="mdl-navigation__link" href="{% url 'blog:category' category.id %}">{{ category.cname }}</a>
+        {% endfor %}
     </nav>
 </div>
 
