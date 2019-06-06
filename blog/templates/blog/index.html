@@ -32,7 +32,7 @@
             {% endblock %}
         </div>
         <div class="loading">
-            <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="loading">
                 加载更多......
             </a>
         </div>
@@ -46,6 +46,7 @@
 {% block script %}
     <script>
         $(document).ready(function () {
+            {#搜索#}
             $("#search").bind('input propertychange', function () {
                 var keyword = $(this).val();
                 if (keyword == '') {
@@ -54,7 +55,7 @@
                         teyp: 'GET',
                         dataType: 'html',
                         success: function (data) {
-                            $('mdl-grid').empty();
+                            $('.mdl-grid').empty();
                             $('.mdl-grid').html(data);
                         }
                     });
@@ -67,14 +68,45 @@
                         teyp: 'GET',
                         dataType: 'html',
                         success: function (data) {
-                            $('mdl-grid').empty();
+                            $('.mdl-grid').empty();
                             $('.mdl-grid').html(data);
                         }
                     });
                 }
             });
-        });
+            $("#loading").click(function () {
+                {#alert({{ article_list.has_next }});#}
+                {% if article_list.has_next %}
+                    $.ajax({
+                        url: 'index_list',
+                        data: {
+                            'page': {{ article_list.next_page_number }}
+                        },
+                        teyp: 'GET',
+                        dataType: 'html',
+                        success: function (data) {
 
+                            {#alert({{ article_list.has_next }})#}
+                            {#$('.mdl-grid').empty();#}
+                            $('.mdl-grid').append(data);
+
+                        }
+                    });
+{#                {% else %}#}
+{#                    $.ajax({#}
+{#                        url: 'index_list',#}
+{##}
+{#                        teyp: 'GET',#}
+{#                        dataType: 'html',#}
+{#                        success: function (data) {#}
+{#                            $('.mdl-grid').empty();#}
+{#                            $('.mdl-grid').html(data);#}
+{##}
+{#                        }#}
+{#                    });#}
+                {% endif %}
+            });
+        });
     </script>
 {% endblock %}
 
