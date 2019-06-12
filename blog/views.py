@@ -15,37 +15,15 @@ def global_param(request):
 
 
 def index(request):
-    # article_list = Article.objects.all()
-    current_page = request.GET.get('page', 1)
+    article_list = Article.objects.all()
+    paginator = Paginator(article_list, 6)
 
-    pages = Paginator(Article.objects.all(), 6)
-    article_list = pages.page(current_page)
-    count = article_list.object_list.count()
+    page = request.GET.get('page', 1)
+    article = paginator.page(page)
     context = {
-        'count': count,
-        'pages': pages,
-        'article_list': article_list,
+        'article': article,
     }
     return render(request, 'blog/index.html', context)
-
-
-# 首页
-def index_list(request):
-    article = Article.objects.all()
-    page = request.GET.get('page')
-
-    paginator = Paginator(article, 6)
-    try:
-        current_page = paginator.page(page)
-        article_list = current_page.object_list
-    except EmptyPage:
-        current_page = paginator.page(paginator.num_pages)
-        article_list = current_page.object_list
-
-    context = {
-        'article_list': article_list,
-    }
-    return render(request, 'blog/index_list.html', context)
 
 
 # 分类页
@@ -83,8 +61,8 @@ def entry(request, eid):
     entry = Article.objects.get(id=eid)
     previous_blog = Article.objects.filter(add_datatime__gt=entry.add_datatime).first()
     next_blog = Article.objects.filter(add_datatime__lt=entry.add_datatime).last()
-    # entry.views += 1
-    # entry.save()
+    entry.views += 1
+    entry.save()
 
     context = {
         'entry': entry,
