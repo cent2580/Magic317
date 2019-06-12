@@ -29,8 +29,14 @@ def index(request):
 # 分类页
 def category(request, cname):
     category_article_list = Article.objects.filter(acategory__cname=cname).order_by('-add_datatime')
+    paginator = Paginator(category_article_list, 6)
+
+    page = request.GET.get('page', 1)
+    category_article = paginator.page(page)
+
     context = {
-        'category_article_list': category_article_list,
+        'category_article': category_article,
+        'cname': cname,
     }
     return render(request, 'blog/category_list.html', context)
 

@@ -1,7 +1,7 @@
 {% extends 'blog/index.html' %}
 {% load static %}
 {% block article_list %}
-    {% for article in category_article_list %}
+    {% for article in category_article %}
         <div class="mdl-cell mdl-card mdl-shadow--4dp">
             <div class="mdl-card__media">
                 <img class="article-image" src="{{ article.image.url }}" border="0" alt="">
@@ -33,4 +33,34 @@
             </div>
         </div>
     {% endfor %}
+{% endblock %}
+
+{% block paginator %}
+    {% if category_article.has_previous %}
+        <a href="{% url 'blog:category' cname %}?page={{ category_article.previous_page_number }}"
+           class="demo-nav__button mdl-color-text--pink-A200"
+           id="previous">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--blue-200 mdl-color-text--grey-200"
+                    role="presentation">
+                <div class="icon material-icons">arrow_back</div>
+            </button>
+        </a>
+        <div class="mdl-tooltip" data-mdl-for="previous">
+            上一页
+        </div>
+    {% endif %}
+    <div class="section-spacer"></div>
+    {% if category_article.has_next %}
+        <a href="{% url 'blog:category' cname %}?page={{ category_article.next_page_number }}"
+           class="demo-nav__button mdl-color-text--pink-A200"
+           id="next">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--blue-200 mdl-color-text--grey-200"
+                    role="presentation">
+                <div class="icon material-icons">arrow_forward</div>
+            </button>
+        </a>
+        <div class="mdl-tooltip" data-mdl-for="next">
+            下一页
+        </div>
+    {% endif %}
 {% endblock %}

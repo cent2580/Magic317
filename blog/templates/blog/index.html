@@ -63,34 +63,35 @@
             {% endblock %}
         </div>
         <nav class="page-content-nav mdl-cell mdl-cell--12-col">
-            {% if article.has_previous %}
-                <a href="{% url 'blog:index' %}?page={{ article.previous_page_number }}"
-                   class="demo-nav__button mdl-color-text--pink-A200"
-                   id="previous">
-                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900"
-                            role="presentation">
-                        <div class="icon material-icons">arrow_back</div>
-                    </button>
-                </a>
-                <div class="mdl-tooltip" data-mdl-for="previous">
-                    上一页
-                </div>
-            {% endif %}
-            <div class="section-spacer"></div>
-            {% if article.has_next %}
-                <a href="{% url 'blog:index' %}?page={{ article.next_page_number }}"
-                   class="demo-nav__button mdl-color-text--pink-A200"
-                   id="next">
-                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900"
-                            role="presentation">
-                        <div class="icon material-icons">arrow_forward</div>
-                    </button>
-                </a>
-                <div class="mdl-tooltip" data-mdl-for="next">
-                    下一页
-                </div>
-            {% endif %}
-
+            {% block paginator %}
+                {% if article.has_previous %}
+                    <a href="{% url 'blog:index' %}?page={{ article.previous_page_number }}"
+                       class="demo-nav__button mdl-color-text--pink-A200"
+                       id="previous">
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--blue-200 mdl-color-text--grey-200"
+                                role="presentation">
+                            <div class="icon material-icons">arrow_back</div>
+                        </button>
+                    </a>
+                    <div class="mdl-tooltip" data-mdl-for="previous">
+                        上一页
+                    </div>
+                {% endif %}
+                <div class="section-spacer"></div>
+                {% if article.has_next %}
+                    <a href="{% url 'blog:index' %}?page={{ article.next_page_number }}"
+                       class="demo-nav__button mdl-color-text--pink-A200"
+                       id="next">
+                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--blue-200 mdl-color-text--grey-200"
+                                role="presentation">
+                            <div class="icon material-icons">arrow_forward</div>
+                        </button>
+                    </a>
+                    <div class="mdl-tooltip" data-mdl-for="next">
+                        下一页
+                    </div>
+                {% endif %}
+            {% endblock %}
         </nav>
     </div>
 {% endblock %}
