@@ -1,4 +1,4 @@
-# Magic317
+# Magic317 Blog
 
-Magic317是个人开发项目，用于学习python开发
-Magic317 Blog是本人开发的第一个django项目
+Magic317 Blog是个人开发项目，用于学习python web开发
+
